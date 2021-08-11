@@ -45,7 +45,7 @@ class ParserDelegateStack {
 
 
 @available(macOS 11.0, *)
-class FactXmlParserAction : NSObject, XMLParserDelegate {
+public class FactXmlParserAction : NSObject, XMLParserDelegate {
     
     
     var facts: [Fact] = []
@@ -71,7 +71,7 @@ class FactXmlParserAction : NSObject, XMLParserDelegate {
 
     
     // 1
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         print("FactParser::START ELEMENT for \(elementName) ")
 
         
@@ -90,7 +90,7 @@ class FactXmlParserAction : NSObject, XMLParserDelegate {
     }
 
     // 2
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         os_log("FactParser::END ELEMENT for \(elementName) ")
 
         if elementName == "entry" {
@@ -113,7 +113,7 @@ class FactXmlParserAction : NSObject, XMLParserDelegate {
     }
 
     // 3
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
+    public func parser(_ parser: XMLParser, foundCharacters string: String) {
         let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if (!data.isEmpty) {
