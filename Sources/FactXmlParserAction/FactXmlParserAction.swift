@@ -80,7 +80,7 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
             day = Int(attributeDict["day"] ?? "0") ?? 0
             year = Int(attributeDict["year"] ?? "0") ?? 0
             mon = attributeDict["mon"] ?? "1900"
-            os_log(" book parser \(attributeDict["id"]! as NSObject)" )
+            print(" book parser \(attributeDict["id"]! as NSObject)" )
             bookTitle = String()
             bookAuthor = String()
             entryData = String()
@@ -91,7 +91,7 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
 
     // 2
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        os_log("FactParser::END ELEMENT for \(elementName) ")
+        print("FactParser::END ELEMENT for \(elementName) ")
 
         if elementName == "entry" {
             //let book = Book(bookTitle: bookTitle, bookAuthor: bookAuthor , itemNum: item)
@@ -117,8 +117,8 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
         let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if (!data.isEmpty) {
-            os_log(" value: \(self.elementName) ")
-            os_log(" data  \(data) ")
+            print(" value: \(self.elementName) ")
+            print(" data  \(data) ")
             if self.elementName == "entry" {
                 entryData += data
             }
