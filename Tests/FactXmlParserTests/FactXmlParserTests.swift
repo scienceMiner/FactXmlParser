@@ -40,7 +40,15 @@
                 // did not like the race 
                 let t1 = FactXmlParserAction( tagName: "entry" )
 
-                t1.loadXml( urlPath : configURL )
+                var factArray = [Fact]()
+                
+                factArray = t1.loadXml( urlPath : configURL )
+                
+                for fact in factArray {
+                    print("\(fact.date) wrote \(fact.fact) in list \(fact.iden) ")
+                }
+                
+                
             }
             else {
                 print ( "module bundle NO GOOD  " )

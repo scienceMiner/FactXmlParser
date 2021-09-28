@@ -9,6 +9,7 @@ import Foundation
 import os
 import os.log
 
+                
 protocol ParserDelegate : XMLParserDelegate {
     
     var delegateStack: ParserDelegateStack? { get set }
@@ -131,7 +132,7 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
     }
     
 
-    public func loadXml(urlPath : URL) {
+    public func loadXml(urlPath : URL) -> [Fact] {
         
         print(" loadXml enter ")
         do {
@@ -145,14 +146,9 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
          // Catch any errors
             print("Unable to read file " )
         }
-//        if let path = Bundle.main.url(forResource: "data", withExtension: "xml")
-        // { }
         
         if let parser = XMLParser(contentsOf: urlPath ) {
-             
-        // let xmlData = bookXml.data(using: .utf8)!
-        // let xmlParser = XMLParser(data: xmlData)
-        // NOT USING: let delegateStack = ParserDelegateStack(xmlParser: xmlParser)
+            
             print(" loadXml::attempt to parse " )
             print( self.elementName )
                     parser.delegate = self
@@ -164,9 +160,8 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
             print(" PARSER not assigned, update urlPath ")
         }
             
-        for fact in facts {
-            print("\(fact.date) wrote \(fact.fact) in list \(fact.iden) ")
-        }
+        
+        return facts
     }
 
     

@@ -9,18 +9,18 @@
 import Foundation
 
 
-struct Fact {
+public struct Fact {
     var iden: Int
     var fact: String
     var date: Date                          
     
-    init(details: [String: Any]) {
+    public init(details: [String: Any]) {
         iden = details["_id"] as? Int ?? 0
         fact = details["text"] as? String ?? ""
         date = Date()
     }
     
-    init(iden: Int, fact: String, date: Date ) {
+    public init(iden: Int, fact: String, date: Date ) {
         self.iden = iden
         self.fact = fact
         self.date = date
