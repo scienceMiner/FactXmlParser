@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog>
-<entry id="1"  day="26" mon="June" year="2017">home at 18:00. pick up O and Phelans at 20:30. watch art of japanese life. Last ever bg!! All over! Not bad. </entry>
-<entry id="2" day="27" mon="June" year="2017">home at 18:00. submit expenses bit of a struggle .wtch x-files - jose chung. n7 at 02! </entry>
-<entry id="3" day="28" mon="June" year="2017">home at 18:00. pick up Sarah </entry>
-<entry id="4" day="29" mon="June" year="2017">home at 18:00. netflix sign-up in secret! </entry>
-<entry id="5" day="30" mon="June" year="2017">Take Cecily to school. home@18:00. Prepare for day trip. </entry>
+<entry id="1"  day="26" mon="June" year="2017">FIX JIRA 1 struggle to release version </entry>
+<entry id="2" day="27" mon="June" year="2017">RELEASE JIRA 2, debug code struggle to release version. wtch x-files - jose chung. n7 at 02! </entry>
+<entry id="3" day="28" mon="June" year="2017">FIX JIRA 2934, debug code , continuous integration timings fail.  </entry>
+<entry id="4" day="29" mon="June" year="2017">Sprint Proteus Retrospective EVENT </entry>
+<entry id="5" day="30" mon="June" year="2017">UAT JIRA 2934, NPC host reboot , continuous integration timings fail. need to configure jenkins versions 2 but on upgrade systems not good. </entry>
+<entry id="6" day="01" mon="July" year="2017">WORK ON JIRA 3927, merge code , tests fail, release and re-merge - close JIRA</entry>
+<entry id="7" day="02" mon="July" year="2017">QA JIRA 2144, debug code , continuous integration timings fail.  </entry>
+<entry id="8" day="03" mon="July" year="2017">go to the moon</entry>
+<entry id="9" day="04" mon="July" year="2017">FIX JIRA 1644, debug code , continuous integration timings fail.  </entry>
+<entry id="10" day="05" mon="July" year="2017">TEST JIRA 3844, test code , continuous integration timings fail.   </entry>
+<entry id="11" day="06" mon="July" year="2017">UPDATE JIRA 2934, debug code , continuous integration timings fail</entry>
+<entry id="12" day="07" mon="July" year="2017">FIX JIRA 1944, debug code , continuous integration timings fail</entry>
 </catalog>
+
 
 

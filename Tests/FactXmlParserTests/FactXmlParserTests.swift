@@ -21,10 +21,8 @@
         }
         
         func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            if let configURL = Bundle.module.url(forResource: "data", withExtension: "xml") {
+            
+            if let configURL = Bundle.module.url(forResource: "data2", withExtension: "xml") {
                 print(configURL.absoluteString)
                 
                 do {
@@ -58,13 +56,7 @@
                 let url = self.getDocumentsDirectory().appendingPathComponent("catalog.xml")
                 
                 t1.save(facts:journal, configURL: url)
-                // DATA HAS BEEN WRITTING to configURL
-                    
-                let decodedJournal = t1.decodeXMLFromFile(configURL: url)
-                    
-                let dateNewURL = self.getDocumentsDirectory().appendingPathComponent("dataNew.xml")
-                    
-                t1.save(facts: decodedJournal, configURL: dateNewURL )
+                
             
             }
             else {

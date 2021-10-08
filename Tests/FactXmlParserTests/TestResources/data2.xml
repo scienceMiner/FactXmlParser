@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog>
-<entry id="1"  day="26" mon="June" year="2017">home at 18:00. pick up O and Phelans at 20:30. watch art of japanese life. Last ever bg!! All over! Not bad. </entry>
-<entry id="2" day="27" mon="June" year="2017">home at 18:00. submit expenses bit of a struggle .wtch x-files - jose chung. n7 at 02! </entry>
-<entry id="3" day="28" mon="June" year="2017">home at 18:00. pick up Sarah </entry>
+<entry id="1"  day="26" mon="June" year="2017">FIX JIRA 1 struggle to release version </entry>
+<entry id="2" day="27" mon="June" year="2017">RELEASE JIRA 2, debug code struggle to release version. wtch x-files - jose chung. n7 at 02! </entry>
+<entry id="3" day="28" mon="June" year="2017">FIX JIRA 2934, debug code , continuous integration timings fail.  </entry>
 <entry id="4" day="29" mon="June" year="2017">home at 18:00. netflix sign-up in secret! </entry>
-<entry id="5" day="30" mon="June" year="2018">Take Cecily to school and home@18:00. Prepare for day trip. </entry>
+<entry id="5" day="30" mon="June" year="2017">UAT JIRA 2934, NPC host reboot , continuous integration timings fail. need to configure jenkins versions 2 but on upgrade systems not good. </entry>
 </catalog>
-
-

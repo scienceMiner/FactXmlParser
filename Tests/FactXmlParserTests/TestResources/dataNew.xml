@@ -2,27 +2,28 @@
     <entry>
         <entry_date>2017-06-26</entry_date>
         <iden>1</iden>
-        <fact>home at 18:00. pick up O and Phelans at 20:30. watch art of japanese life. Last ever bg!! All over! Not bad.</fact>
+        <fact>FIX JIRA 1 struggle to release version</fact>
     </entry>
     <entry>
         <entry_date>2017-06-27</entry_date>
-        <fact>home at 18:00. submit expenses bit of a struggle .wtch x-files - jose chung. n7 at 02!</fact>
+        <fact>RELEASE JIRA 2, debug code struggle to release version. wtch x-files</fact>
         <iden>2</iden>
     </entry>
     <entry>
-        <entry_date>2017-06-28</entry_date>
-        <fact>home at 18:00. pick up Sarah</fact>
         <iden>3</iden>
+        <entry_date>2017-06-28</entry_date>
+        <fact>FIX JIRA 2934, debug code , continuous integration timings fail.</fact>
     </entry>
     <entry>
+        <fact>END OF SPRINT - velocity low </fact>
         <entry_date>2017-06-29</entry_date>
         <iden>4</iden>
-        <fact>home at 18:00. netflix sign-up in secret!</fact>
     </entry>
     <entry>
         <iden>5</iden>
-        <fact>Take Cecily to school and home@18:00. Prepare for day trip.</fact>
-        <entry_date>2018-06-30</entry_date>
+        <entry_date>2017-06-30</entry_date>
+        <fact>UAT JIRA 2934, NPC host reboot , continuous integration timings fail. need to configure jenkins versions 2 but on upgrade systems not good.</fact>
     </entry>
 </journal>
+
 

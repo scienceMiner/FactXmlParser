@@ -278,7 +278,13 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
         return facts
     }
 
-    
+    public func filter(input: String) -> String {
+        
+        let newString = input.replacingOccurrences(of: "&", with: " and ", options: .literal, range: nil)
+        
+        return newString
+        
+    }
     
     func convert(month: String) -> Int {
         if (month=="June") {
