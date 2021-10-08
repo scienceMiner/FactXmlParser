@@ -8,6 +8,7 @@
 import Foundation
 import os
 import os.log
+import XMLParsing
 
                 
 protocol ParserDelegate : XMLParserDelegate {
@@ -48,7 +49,7 @@ class ParserDelegateStack {
 @available(macOS 11.0, *)
 public class FactXmlParserAction : NSObject, XMLParserDelegate {
     
-    
+    var journal: Journal = Journal(factArray: [])
     var facts: [Fact] = []
     var elementName: String = String()
     var bookTitle = String()
@@ -81,12 +82,13 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
             day = Int(attributeDict["day"] ?? "0") ?? 0
             year = Int(attributeDict["year"] ?? "0") ?? 0
             mon = attributeDict["mon"] ?? "1900"
-            print(" book parser \(attributeDict["id"]! as NSObject)" )
+            //print(" book parser \(attributeDict["id"]! as NSObject)" )
             bookTitle = String()
             bookAuthor = String()
             entryData = String()
         }
-
+        
+        
         self.elementName = elementName
     }
 
@@ -95,7 +97,6 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
         print("FactParser::END ELEMENT for \(elementName) ")
 
         if elementName == "entry" {
-            //let book = Book(bookTitle: bookTitle, bookAuthor: bookAuthor , itemNum: item)
             
             var date = DateComponents()
             date.year = year
@@ -109,7 +110,13 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
             let parsedDate = Calendar.current.date(from: date)!
                         
             let book = Fact(iden: item, fact: entryData , date: parsedDate)
+            print("Appending fact to Facts \(item)")
             facts.append(book)
+        }
+        
+        if elementName == "catalog" {
+            print(" ElementName is CATALOG ")
+            journal.entry = facts
         }
     }
 
@@ -123,6 +130,9 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
             if self.elementName == "entry" {
                 entryData += data
             }
+            if self.elementName == "fact" {
+                entryData += data
+            }
             if self.elementName == "title" {
                 bookTitle += data
             } else if self.elementName == "author" {
@@ -131,7 +141,111 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
         }
     }
     
+    public func getDocumentsDirectory() -> URL {
+        // find all possible documents directories for this user
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 
+        // just send back the first one, which ought to be the only one
+        return paths[0]
+    }
+    
+    // SAME AS SAVE
+    public func encodeJournalToFile(facts: Journal, configURLNew: URL ) {
+        let enc1 = XMLEncoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        enc1.dateEncodingStrategy = .formatted(dateFormatter)
+        
+        guard let returnData = try? enc1.encode(facts, withRootKey: "journal")
+        else {
+            fatalError("Error encoding data")
+        }
+        
+        do {
+                try returnData.write(to: configURLNew)
+                print(" File NOW saved: \(configURLNew.absoluteURL) ")
+        }
+        catch {
+                print("Unable to read file " )
+                fatalError("Can't write to file")
+        }
+    }
+    
+    public func save(facts: Journal, configURL: URL) {
+  //      DispatchQueue.global(qos: .background).async {
+            let encoder = XMLEncoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            encoder.dateEncodingStrategy = .formatted(dateFormatter)
+            
+            // ENCODE TO XML DATA
+            guard let factData = try? encoder.encode(facts, withRootKey: "journal" )
+            else {
+                    fatalError("Error encoding data")
+                }
+        
+            for fact in journal.entry {
+                print("\(fact.date) wrote \(fact.fact) in list \(fact.iden) ")
+            }
+            // WRITE XML TO FILE
+            do {
+                try factData.write(to: configURL)
+                print(" File saved: \(configURL.absoluteURL) ")
+            } catch {
+                // Catch any errors
+                print(error.localizedDescription)
+                fatalError("Can't write to file")
+                
+            }
+            
+            // DATA HAS BEEN WRITTING to configURL
+                
+          //  let decodedJournal = decodeXMLFromFile(configURL: configURL)
+                
+          //  let dateNewURL = getDocumentsDirectory().appendingPathComponent("dataNew.xml")
+                
+          //  encodeJournalToFile(facts: decodedJournal, configURLNew: dateNewURL )
+        
+    }
+    
+    public func getDataString(retrievedData: Data) -> String {
+        var retrievedString = String()
+        retrievedString = String(data: retrievedData, encoding: .utf8)!
+        //let newString = retrievedString.replacingOccurrences(of: "&", with: " //and ", options: .literal, range: nil)
+        return retrievedString
+    }
+    
+    public func decodeXMLFromFile(configURL: URL) -> Journal {
+        
+        var decodedJournalData = Journal(factArray: [])
+        
+        do{
+            
+            let retrievedData = try Data(contentsOf: configURL)
+        
+            print(getDataString(retrievedData: retrievedData))
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let decoder = XMLDecoder()
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            
+            decodedJournalData = try decoder.decode(Journal.self, from: retrievedData)
+            
+
+        }
+        catch {
+            // Catch any errors
+            print(error.localizedDescription)
+            fatalError("Can't write to file")
+            
+        }
+        
+        return decodedJournalData
+    
+    }
+    
     public func loadXml(urlPath : URL) -> [Fact] {
         
         print(" loadXml enter ")
@@ -176,3 +290,13 @@ public class FactXmlParserAction : NSObject, XMLParserDelegate {
     }
     
 }
+
+    @main
+    struct App {
+        static func main() {
+            print("Starting.")
+        }
+    }
+    
+    
+
