@@ -25,8 +25,6 @@
             // Use XCTAssert and related functions to verify your tests produce the correct
             // results.
             if let configURL = Bundle.module.url(forResource: "data", withExtension: "xml") {
-                print ( "does this work " )
-                
                 print(configURL.absoluteString)
                 
                 do {
@@ -60,8 +58,6 @@
                 let url = self.getDocumentsDirectory().appendingPathComponent("catalog.xml")
                 
                 t1.save(facts:journal, configURL: url)
-                print( " file SAVED " )
-                
                 // DATA HAS BEEN WRITTING to configURL
                     
                 let decodedJournal = t1.decodeXMLFromFile(configURL: url)
@@ -74,24 +70,18 @@
             else {
                 print ( "module bundle NO GOOD  " )
             }
-                
 
         }
         
         
-        func testEncodeFromDecodedXML() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.            
-            // did not like the race
+        func testDecodeFromEncodedXML() {
+            
             let t1 = FactXmlParserAction( tagName: "entry" )
 
             //let dataNewURL = self.getDocumentsDirectory().appendingPathComponent("dataNew.xml")
-            
             if let dataNewURL = Bundle.module.url(forResource: "dataNew", withExtension: "xml")
             {
                 let decodedJournal = t1.decodeXMLFromFile(configURL: dataNewURL)
-                
                 for fact in decodedJournal.entry {
                         print("\(fact.date) :: \(fact.iden) DETAIL: \(fact.fact) ")
                 }
@@ -99,8 +89,23 @@
             else {
                 print(" module not found ")
             }
+        }
+        
+        func testSaveXML() {
             
+            let t1 = FactXmlParserAction( tagName: "entry" )
+
+            let dataNewURL = self.getDocumentsDirectory().appendingPathComponent("dataNew.xml")
             
+            let decodedJournal = t1.decodeXMLFromFile(configURL: dataNewURL)
+            
+            for fact in decodedJournal.entry {
+                        print("\(fact.date) :: \(fact.iden) DETAIL: \(fact.fact) ")
+            }
+                
+            t1.save(facts: decodedJournal, configURL: dataNewURL )
             
         }
+        
+        
     }
